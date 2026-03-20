@@ -19,7 +19,7 @@ public:
     ElementaryEvent& operator |= (const ElementaryEvent& other);
     ElementaryEvent& operator &= (const ElementaryEvent& other);
 
-    const String& getEventDescriptionn() const;
+    const String& getEventDescription() const;
     int32_t getEventId() const;
 
     friend std::ostream& operator << (std::ostream& os, const ElementaryEvent& event);

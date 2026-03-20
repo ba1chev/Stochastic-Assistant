@@ -11,7 +11,7 @@ private:
     Vector<Event> hypothesis;
 
     bool areIndependent() const;
-    bool areTheyFillOmege() const;
+    bool areTheyFillOmega() const;
     void setOmegaRef(const Omega* omega);
     void setHypothesis(const Vector<Event>& hypothesis);
   

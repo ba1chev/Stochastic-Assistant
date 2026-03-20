@@ -27,7 +27,7 @@ bool FullGroupOfEvents::areIndependent() const {
     return true;
 }
 
-bool FullGroupOfEvents::areTheyFillOmege() const {
+bool FullGroupOfEvents::areTheyFillOmega() const {
     if (!omega) {
         throw std::logic_error("Omega pointer is null");
     }

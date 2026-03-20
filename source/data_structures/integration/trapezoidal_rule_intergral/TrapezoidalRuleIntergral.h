@@ -4,14 +4,14 @@
 #include "source/functions/Function.hpp"
 
 
-class TrapezoidalRuleIntergral: public Integral {
+class TrapezoidalRuleIntegral: public Integral {
 private:
-    size_t countOfNonSubIntervals = 0;
-    void setCountOfNonSubIntervals(size_t countOfNonSubIntervals);
+    size_t countOfSubIntervals = 0;
+    void setCountOfNonSubIntervals(size_t countOfSubIntervals);
 
 public:
-    TrapezoidalRuleIntergral(const Function<double, double>* function, size_t countOfNonSubIntervals);
+    TrapezoidalRuleIntegral(const Function<double, double>* function, size_t countOfSubIntervals);
     
-    double intergrate(double lower, double upper) const override;
+    double integrate(double lower, double upper) const override;
     Integral* clone() const override;
 };

@@ -6,20 +6,20 @@ Binomial::Binomial(uint32_t countOfExperiments, Success success):
     this->setCountOfExperiments(countOfExperiments);
 }
 
-Binomial::Binomial(const HeterogeneousContainer<BernoulliSchemeRandomVariable<bool>>& countainerOfBernouliis): 
-    BernoulliSchemeRandomVariable(countainerOfBernouliis.getSize() > 0 ? countainerOfBernouliis[0]->getSuccessRate() : 0.0, DiscreteRandomVariableType::Binomial) {
-        if (countainerOfBernouliis.getSize() == 0) {
+Binomial::Binomial(const HeterogeneousContainer<BernoulliSchemeRandomVariable<bool>>& containerOfBernoullis): 
+    BernoulliSchemeRandomVariable(containerOfBernoullis.getSize() > 0 ? containerOfBernoullis[0]->getSuccessRate() : 0.0, DiscreteRandomVariableType::Binomial) {
+        if (containerOfBernoullis.getSize() == 0) {
             throw std::logic_error("Binomial requires at least one Bernoulli trial");
         }
 
-        const double probabilityForSuccess = countainerOfBernouliis[0]->getSuccessRate();
-        for (size_t i = 1; i < countainerOfBernouliis.getSize(); i++) {
-            if (countainerOfBernouliis[i]->getSuccessRate() != probabilityForSuccess) {
+        const double probabilityForSuccess = containerOfBernoullis[0]->getSuccessRate();
+        for (size_t i = 1; i < containerOfBernoullis.getSize(); i++) {
+            if (containerOfBernoullis[i]->getSuccessRate() != probabilityForSuccess) {
                 throw std::logic_error("All Bernoulli trials must have identical success rate");
             }
         }
 
-        this->setCountOfExperiments(countainerOfBernouliis.getSize());
+        this->setCountOfExperiments(containerOfBernoullis.getSize());
 }
 
 uint32_t Binomial::getCountOfExperiments() const {

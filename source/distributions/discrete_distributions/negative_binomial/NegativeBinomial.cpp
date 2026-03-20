@@ -6,20 +6,20 @@ NegativeBinomial::NegativeBinomial(uint32_t successesTarget, Success success):
     this->setCountOfExperiments(successesTarget);
 }
 
-NegativeBinomial::NegativeBinomial(const HeterogeneousContainer<BernoulliSchemeRandomVariable<uint32_t>>& countainerOfGeometrics)
-    : BernoulliSchemeRandomVariable(countainerOfGeometrics.getSize() > 0 ? countainerOfGeometrics[0]->getSuccessRate() : 0.0, DiscreteRandomVariableType::NegativeBinomial) {
-    if (countainerOfGeometrics.getSize() == 0) {
+NegativeBinomial::NegativeBinomial(const HeterogeneousContainer<BernoulliSchemeRandomVariable<uint32_t>>& containerOfGeometrics)
+    : BernoulliSchemeRandomVariable(containerOfGeometrics.getSize() > 0 ? containerOfGeometrics[0]->getSuccessRate() : 0.0, DiscreteRandomVariableType::NegativeBinomial) {
+    if (containerOfGeometrics.getSize() == 0) {
         throw std::logic_error("Negative Binomial requires at least one geometric trial");
     }
 
-    const double probabilityForSuccess = countainerOfGeometrics[0]->getSuccessRate();
-    for (size_t i = 1; i < countainerOfGeometrics.getSize(); i++) {
-        if (countainerOfGeometrics[i]->getSuccessRate() != probabilityForSuccess) {
+    const double probabilityForSuccess = containerOfGeometrics[0]->getSuccessRate();
+    for (size_t i = 1; i < containerOfGeometrics.getSize(); i++) {
+        if (containerOfGeometrics[i]->getSuccessRate() != probabilityForSuccess) {
             throw std::logic_error("All geometric trials must have identical success rate");
         }
     }
 
-    this->setCountOfExperiments(countainerOfGeometrics.getSize());
+    this->setCountOfExperiments(containerOfGeometrics.getSize());
 }
 
 uint32_t NegativeBinomial::getCountOfSuccessesTarget() const {

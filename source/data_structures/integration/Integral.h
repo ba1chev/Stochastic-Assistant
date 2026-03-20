@@ -1,22 +1,22 @@
 #pragma once
 
 #include "source/functions/Function.hpp"
-#include "source/data_structures/integration/IntegrationApproximaton.h"
+#include "source/data_structures/integration/IntegrationApproximation.h"
 #include <stdexcept>
 
 
 class Integral {
 protected:
     const Function<double, double>* function = nullptr;
-    IntegrationApproximaton approximation = IntegrationApproximaton::None;
+    IntegrationApproximation approximation = IntegrationApproximation::None;
 
     void setFunctionPtr(const Function<double, double>* function);
-    void setIntegrationApproximaton(IntegrationApproximaton approximation);
+    void setIntegrationApproximation(IntegrationApproximation approximation);
 
 public:
-    Integral(const Function<double, double>* function, IntegrationApproximaton approximation);
+    Integral(const Function<double, double>* function, IntegrationApproximation approximation);
 
-    virtual double intergrate(double lower, double upper) const = 0;
+    virtual double integrate(double lower, double upper) const = 0;
     virtual Integral* clone() const = 0;
     virtual ~Integral() = default;
 };

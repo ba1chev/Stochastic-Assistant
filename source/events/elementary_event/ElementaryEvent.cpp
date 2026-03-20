@@ -31,7 +31,7 @@ int32_t ElementaryEvent::getEventId() const {
     return this->realId;
 }
 
-const String &ElementaryEvent::getEventDescriptionn() const {
+const String &ElementaryEvent::getEventDescription() const {
     return this->eventDescription;
 }
 
@@ -40,7 +40,7 @@ ElementaryEvent& ElementaryEvent::operator |= (const ElementaryEvent& other) {
         return *this;
     }
 
-    *this = ElementaryEvent(this->getEventDescriptionn() + String(" ") + RED + "OR" + RESET + " " + other.getEventDescriptionn());
+    *this = ElementaryEvent(this->getEventDescription() + String(" ") + RED + "OR" + RESET + " " + other.getEventDescription());
     return *this;
 }
 
@@ -49,7 +49,7 @@ ElementaryEvent& ElementaryEvent::operator &= (const ElementaryEvent& other) {
         return *this;
     }
 
-    *this = ElementaryEvent(this->getEventDescriptionn() + String(" ") + RED + "AND" + RESET + " " + other.getEventDescriptionn());
+    *this = ElementaryEvent(this->getEventDescription() + String(" ") + RED + "AND" + RESET + " " + other.getEventDescription());
     return *this;
 }
 
@@ -74,6 +74,6 @@ std::istream& operator >> (std::istream& is, ElementaryEvent& event) {
 
 std::ostream& operator << (std::ostream& os, const ElementaryEvent& event) {
     os << "{ [ Event id: " << event.getEventId() << " ], ";
-    os << "[ Event description: " << event.getEventDescriptionn() << " ] }";
+    os << "[ Event description: " << event.getEventDescription() << " ] }";
     return os;
 }

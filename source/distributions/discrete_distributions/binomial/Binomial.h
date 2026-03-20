@@ -13,7 +13,7 @@ private:
 
 public:
     Binomial(uint32_t countOfExperiments, Success success);
-    Binomial(const HeterogeneousContainer<BernoulliSchemeRandomVariable<bool>>& countainerOfBernouliis);
+    Binomial(const HeterogeneousContainer<BernoulliSchemeRandomVariable<bool>>& containerOfBernoullis);
     uint32_t getCountOfExperiments() const;
 
     double calculateProbability(const uint32_t& number) const override;

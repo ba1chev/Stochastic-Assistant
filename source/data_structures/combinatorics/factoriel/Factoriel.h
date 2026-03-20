@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-class Factoriel {
+class Factorial {
 public:
     size_t operator () (size_t number) const;
 };

@@ -13,7 +13,7 @@ private:
 
 public:
     NegativeBinomial(uint32_t successesTarget, Success success);
-    NegativeBinomial(const HeterogeneousContainer<BernoulliSchemeRandomVariable<uint32_t>>& countainerOfGeometrics);
+    NegativeBinomial(const HeterogeneousContainer<BernoulliSchemeRandomVariable<uint32_t>>& containerOfGeometrics);
     uint32_t getCountOfSuccessesTarget() const;
 
     double calculateProbability(const uint32_t& number) const override;

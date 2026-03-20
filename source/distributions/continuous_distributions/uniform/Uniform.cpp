@@ -14,8 +14,8 @@ Uniform::Uniform(double lower, double upper): ContinuousRandomVariable([&]() {
 double Uniform::calculateProbability(const Interval& interval) const {
     if (interval.getLeftComponent() > interval.getRightComponent()) return 0.0;
 
-    Integral* integral = new TrapezoidalRuleIntergral(this->getDensityFunction(), COUNT_OF_SUB_INTERVALS);
-    double result = integral->intergrate(interval.getLeftComponent(), interval.getRightComponent());
+    Integral* integral = new TrapezoidalRuleIntegral(this->getDensityFunction(), COUNT_OF_SUB_INTERVALS);
+    double result = integral->integrate(interval.getLeftComponent(), interval.getRightComponent());
 
     delete integral;
     integral = nullptr;
