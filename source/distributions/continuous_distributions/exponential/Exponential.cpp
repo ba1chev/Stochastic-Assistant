@@ -1,5 +1,8 @@
 #include "source/distributions/continuous_distributions/exponential/Exponential.h"
-#include <algorithm>
+#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
+#include "source/data_structures/integration/Integral.h"
+#include "source/functions/density_function/exponential_density_function/ExponentialDensityFunction.h"
+#include "source/Constants.h"
 #include <cmath>
 #include <limits>
 
@@ -11,15 +14,17 @@ Exponential::Exponential(double lambda): ContinuousRandomVariable([&]() {
 
 double Exponential::calculateProbability(const Interval& interval) const {
     const double lambda = this->getParameters()[0];
-    const double lower = interval.getLeftComponent();
-    const double upper = interval.getRightComponent();
+    double left = std::max(0.0, interval.getLeftComponent());
+    double right = interval.getRightComponent();
 
-    if (upper <= 0.0) return 0.0;
-    const double a = std::max(0.0, lower);
-    const bool upperIsInf = std::isinf(upper) && upper > 0;
-    const double leftTerm = std::exp(-lambda * a);
-    const double rightTerm = upperIsInf ? 0.0 : std::exp(-lambda * upper);
-    return leftTerm - rightTerm;
+    const double effectiveRight = (std::isinf(right) && right > 0) ? 50.0 / lambda : right;
+
+    Integral* integral = new TrapezoidalRuleIntergral(this->getDensityFunction(), COUNT_OF_SUB_INTERVALS);
+    double result = integral->intergrate(left, effectiveRight);
+
+    delete integral;
+    integral = nullptr;
+    return result;
 }
 
 double Exponential::getExpectation() const {
