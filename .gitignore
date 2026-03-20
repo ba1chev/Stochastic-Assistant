@@ -1,4 +1,3 @@
 *.dSYM
 main
 .DS_Store
-main.cpp
