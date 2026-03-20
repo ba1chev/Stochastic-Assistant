@@ -17,7 +17,8 @@ Integral* TrapezoidalRuleIntergral::clone() const {
 }
 
 double TrapezoidalRuleIntergral::intergrate(double lower, double upper) const {
-    const double h = std::abs(upper - lower) / static_cast<double>(this->countOfNonSubIntervals);
+    if (lower >= upper) return 0.0;
+    const double h = (upper - lower) / static_cast<double>(this->countOfNonSubIntervals);
     double currentSum = 0.0;
 
     for (size_t i = 1; i < this->countOfNonSubIntervals; i++) {

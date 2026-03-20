@@ -84,7 +84,7 @@ Event SigmaAlgebra::makeEventFromMask(size_t mask) const {
     const Vector<ElementaryEvent>& omegaEvents = this->omega->getElementaryEvents();
 
     for (size_t i = 0; i < omegaEvents.getSize(); i++) {
-        if (mask & (1 << i)) {
+        if (mask & (size_t(1) << i)) {
             event.addElementaryEvent(omegaEvents[i]);
         }
     }

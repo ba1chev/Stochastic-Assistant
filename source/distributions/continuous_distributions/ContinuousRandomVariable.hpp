@@ -88,7 +88,7 @@ void ContinuousRandomVariable<T>::free() {
 
 template <class T>
 void ContinuousRandomVariable<T>::setType(ContinuousRandomVariableType type) {
-    if (type == ContinuousRandomVariableType::None) throw std::runtime_error("Type must be different form None");
+    if (type == ContinuousRandomVariableType::None) throw std::runtime_error("Type must be different from None");
     this->type = type;
 }
 
@@ -137,8 +137,8 @@ void ContinuousRandomVariable<T>::setParameters(const Vector<T>& inputParameters
         throw std::runtime_error("Uniform distribution requires two parameters with lower < upper");
     } else if (this->type == ContinuousRandomVariableType::Normal && (inputParameters.getSize() != 2)) {
         throw std::runtime_error("Normal distribution requires two parameters");
-    } else if (this->type == ContinuousRandomVariableType::Exponential && (inputParameters.getSize() != 1 || inputParameters[0] < 0)) {
-        throw std::runtime_error("Exponential distribution requires one parameter and it must be grater than 0");
+    } else if (this->type == ContinuousRandomVariableType::Exponential && (inputParameters.getSize() != 1 || inputParameters[0] <= 0)) {
+        throw std::runtime_error("Exponential distribution requires one parameter and it must be greater than 0");
     }
     this->parameters = inputParameters;
 }

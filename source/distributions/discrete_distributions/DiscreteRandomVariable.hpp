@@ -27,6 +27,6 @@ DiscreteRandomVariable<T>::DiscreteRandomVariable(DiscreteRandomVariableType typ
 
 template <class T>
 void DiscreteRandomVariable<T>::setType(DiscreteRandomVariableType type) {
-    if (type == DiscreteRandomVariableType::None) throw std::runtime_error("Type must be different form None");
+    if (type == DiscreteRandomVariableType::None) throw std::runtime_error("Type must be different from None");
     this->type = type;
 }

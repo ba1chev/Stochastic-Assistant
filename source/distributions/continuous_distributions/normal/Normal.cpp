@@ -22,6 +22,7 @@ double Normal::calculateProbability(const Interval& interval) const {
 
     const double effectiveLeft = (std::isinf(left) && left < 0) ? mu - 10 * sigma : left;
     const double effectiveRight = (std::isinf(right) && right > 0) ? mu + 10 * sigma : right;
+    if (effectiveLeft > effectiveRight) return 0.0;
 
     Integral* integral = new TrapezoidalRuleIntergral(this->getDensityFunction(), COUNT_OF_SUB_INTERVALS);
     double result = integral->intergrate(effectiveLeft, effectiveRight);

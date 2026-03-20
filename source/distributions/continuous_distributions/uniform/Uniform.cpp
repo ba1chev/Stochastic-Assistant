@@ -12,11 +12,13 @@ Uniform::Uniform(double lower, double upper): ContinuousRandomVariable([&]() {
 }(), ContinuousRandomVariableType::Uniform) {}
 
 double Uniform::calculateProbability(const Interval& interval) const {
-    Integral* intergral = new TrapezoidalRuleIntergral(this->getDensityFunction(), COUNT_OF_SUB_INTERVALS);
-    double result = intergral->intergrate(interval.getLeftComponent(), interval.getRightComponent());
+    if (interval.getLeftComponent() > interval.getRightComponent()) return 0.0;
 
-    delete intergral;
-    intergral = nullptr;
+    Integral* integral = new TrapezoidalRuleIntergral(this->getDensityFunction(), COUNT_OF_SUB_INTERVALS);
+    double result = integral->intergrate(interval.getLeftComponent(), interval.getRightComponent());
+
+    delete integral;
+    integral = nullptr;
     return result;
 }
 

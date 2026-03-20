@@ -6,7 +6,7 @@ Bernoulli::Bernoulli(Success success):
 double Bernoulli::calculateProbability(const bool& number) const {
     if (number == 1) return this->getSuccessRate();
     else if (number == 0) return this->getFailureRate();
-    else throw std::logic_error("Bolean must be 0 or 1");
+    else throw std::logic_error("Boolean must be 0 or 1");
 }
 
 double Bernoulli::getExpectation() const {

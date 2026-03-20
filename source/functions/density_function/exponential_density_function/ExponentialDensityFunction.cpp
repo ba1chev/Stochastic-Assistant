@@ -8,7 +8,7 @@ ExponentialDensityFunction::ExponentialDensityFunction(double lambda):
 }
 
 void ExponentialDensityFunction::setLambda(double lambda) {
-    if (lambda < 0) throw std::runtime_error("Lambda must be greater than 0");
+    if (lambda <= 0) throw std::runtime_error("Lambda must be greater than 0");
     this->lambda = lambda;
 }
 

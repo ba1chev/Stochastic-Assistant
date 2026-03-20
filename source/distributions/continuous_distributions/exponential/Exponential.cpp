@@ -18,6 +18,7 @@ double Exponential::calculateProbability(const Interval& interval) const {
     double right = interval.getRightComponent();
 
     const double effectiveRight = (std::isinf(right) && right > 0) ? 50.0 / lambda : right;
+    if (left > effectiveRight) return 0.0;
 
     Integral* integral = new TrapezoidalRuleIntergral(this->getDensityFunction(), COUNT_OF_SUB_INTERVALS);
     double result = integral->intergrate(left, effectiveRight);
