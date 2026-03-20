@@ -22,6 +22,7 @@ SRC := \
 	source/distributions/discrete_distributions/negative_binomial/NegativeBinomial.cpp \
 	source/distributions/discrete_distributions/poisson/Poisson.cpp \
 	source/data_structures/integration/Integral.cpp \
+	source/distributions/discrete_distributions/hyper_geometric/HyperGeometric.cpp \
 	source/events/probability_space/ProbabilitySpace.cpp \
 	source/functions/conditional_probability_function/ConditionalProbabilityFunction.cpp \
 	source/functions/conditional_probability_function/full_probability_formula/FullProbabilityFormula.cpp \

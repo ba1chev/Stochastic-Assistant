@@ -33,7 +33,7 @@ void NegativeBinomial::setCountOfExperiments(uint32_t successesTarget) {
 
 double NegativeBinomial::calculateProbability(const uint32_t& number) const {
     uint32_t r = this->successesTarget;
-    uint32_t combinations = HelperFunctions::binomial(number + r - 1, r - 1);
+    uint64_t combinations = HelperFunctions::binomial(number + r - 1, r - 1);
     return combinations * std::pow(this->getSuccessRate(), r) * std::pow(this->getFailureRate(), number);
 }
 

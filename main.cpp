@@ -15,6 +15,7 @@
 #include "source/distributions/continuous_distributions/normal/Normal.h"
 #include "source/distributions/continuous_distributions/exponential/Exponential.h"
 #include "source/distributions/discrete_distributions/poisson/Poisson.h"
+#include "source/distributions/discrete_distributions/hyper_geometric/HyperGeometric.h"
 #include <iostream>
 
 
@@ -37,6 +38,10 @@ void test1() {
     delete ber2;
     delete binFair;
     delete binUnFair;
+    ber1 = nullptr;
+    ber2 = nullptr;
+    binFair = nullptr;
+    binUnFair = nullptr;
 }
 
 void test2() {
@@ -113,6 +118,9 @@ void test3() {
     delete omega;
     delete factory;
     delete sigmaAlgebra;
+    omega = nullptr;
+    factory = nullptr;
+    sigmaAlgebra = nullptr;
 }
 
 void test4() {
@@ -122,6 +130,8 @@ void test4() {
 
     delete function;
     delete integral;
+    function = nullptr;
+    integral = nullptr;
 }
 
 void test5() {
@@ -131,6 +141,7 @@ void test5() {
     std::cout << uniform->calculateProbability(Interval(0, 0.5)) << std::endl;
 
     delete uniform;
+    uniform = nullptr;
 }
 
 void test6() {
@@ -140,6 +151,7 @@ void test6() {
     std::cout << normal->calculateProbability(Interval(-0.5, 1)) << std::endl;
 
     delete normal;
+    normal = nullptr;
 }
 
 void test7() {
@@ -149,6 +161,7 @@ void test7() {
     std::cout << exponential->calculateProbability(Interval(0, 1)) << std::endl;
 
     delete exponential;
+    exponential = nullptr;
 }
 
 void test8() {
@@ -159,6 +172,7 @@ void test8() {
     std::cout << bernoulli->calculateProbability(1) << std::endl;
 
     delete bernoulli;
+    bernoulli = nullptr;
 }
 
 void test9() {
@@ -168,6 +182,7 @@ void test9() {
     for (size_t i = 0; i <= 10; i++) std::cout << binomial->calculateProbability(i) << std::endl;
 
     delete binomial;
+    binomial = nullptr;
 }
 
 void test10() {
@@ -177,6 +192,7 @@ void test10() {
     for (size_t i = 0; i <= 10; i++) std::cout << geometric->calculateProbability(i) << std::endl;
 
     delete geometric;
+    geometric = nullptr;
 }
 
 void test11() {
@@ -186,6 +202,7 @@ void test11() {
     for (size_t i = 0; i <= 10; i++) std::cout << negativeBinomial->calculateProbability(i) << std::endl;
 
     delete negativeBinomial;
+    negativeBinomial = nullptr;
 }
 
 void test12() {
@@ -195,9 +212,20 @@ void test12() {
     for (size_t i = 0; i <= 10; i++) std::cout << poisson->calculateProbability(i) << std::endl;
 
     delete poisson;
+    poisson = nullptr;
+}
+
+void test13() {
+    DiscreteRandomVariable<uint32_t>* hyperGeometric = new HyperGeometric(100, 50, 10);
+    std::cout << "The expectation is: " << hyperGeometric->getExpectation() << std::endl;
+    std::cout << "The variance is: " << hyperGeometric->getVariance() << std::endl;
+    for (size_t i = 0; i <= 10; i++) std::cout << hyperGeometric->calculateProbability(i) << std::endl;
+
+    delete hyperGeometric;
+    hyperGeometric = nullptr;
 }
 
 int main() {
-
+    test13();
     return 0;
 }

@@ -20,9 +20,9 @@ double HyperGeometric::calculateProbability(const uint32_t& number) const {
         ? (this->drawnObjects + this->countOfMarkedObjects - this->countOfAllObjects) : 0;
     if (number < minK || number > maxK) return 0.0;
 
-    double numerator = KSelection(KSelectionPattern::Combination, this->countOfMarkedObjects, number).generateCount() *
-        KSelection(KSelectionPattern::Combination, this->countOfAllObjects - this->countOfMarkedObjects, this->drawnObjects - number).generateCount();
-    double denominator = KSelection(KSelectionPattern::Combination, this->countOfAllObjects, this->drawnObjects).generateCount();
+    double numerator = (double)KSelection(KSelectionPattern::Combination, this->countOfMarkedObjects, number).generateCount() *
+        (double)KSelection(KSelectionPattern::Combination, this->countOfAllObjects - this->countOfMarkedObjects, this->drawnObjects - number).generateCount();
+    double denominator = (double)KSelection(KSelectionPattern::Combination, this->countOfAllObjects, this->drawnObjects).generateCount();
 
     return numerator / denominator;
 }

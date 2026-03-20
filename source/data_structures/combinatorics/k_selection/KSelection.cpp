@@ -32,13 +32,13 @@ void KSelection::applyPattern(KSelectionPattern buildingPattern) {
     }
 }
 
-uint32_t KSelection::generateCount() const {
+uint64_t KSelection::generateCount() const {
     this->validate();
     switch (this->buildingPattern) {
         case KSelectionPattern::Combination: return HelperFunctions::binomial(this->n, this->k);
         case KSelectionPattern::CombinationWithRepetition: return HelperFunctions::binomial(this->n + this->k - 1, this->k);
         case KSelectionPattern::Variation: return HelperFunctions::permutation(this->n, this->k);
-        case KSelectionPattern::VariationWithRepetition: return std::pow(this->n, this->k);
+        case KSelectionPattern::VariationWithRepetition: return (uint64_t)std::pow(this->n, this->k);
         case KSelectionPattern::Permutation: return HelperFunctions::permutation(this->n, this->n);
         default: throw std::logic_error("Unsupported pattern");
     }
@@ -80,7 +80,7 @@ KSelectionPattern KSelection::getBuildingPattern() const {
     return this->buildingPattern;
 }
 
-uint32_t HelperFunctions::binomial(uint32_t n, uint32_t k) {
+uint64_t HelperFunctions::binomial(uint32_t n, uint32_t k) {
     if (k > n) throw std::invalid_argument("k cannot be greater than n");
     uint32_t kSmall = (k > n - k) ? (n - k) : k;
     uint64_t result = 1;
@@ -89,10 +89,10 @@ uint32_t HelperFunctions::binomial(uint32_t n, uint32_t k) {
         result = result * (n - kSmall + i) / i;
     }
 
-    return (uint32_t)(result);
+    return result;
 }
 
-uint32_t HelperFunctions::permutation(uint32_t n, uint32_t k) {
+uint64_t HelperFunctions::permutation(uint32_t n, uint32_t k) {
     if (k > n) throw std::invalid_argument("k cannot be greater than n");
     uint64_t result = 1;
 
@@ -100,5 +100,5 @@ uint32_t HelperFunctions::permutation(uint32_t n, uint32_t k) {
         result *= (n - i);
     }
 
-    return (uint32_t)(result);
+    return result;
 }

@@ -7,8 +7,8 @@
 #include "source/data_structures/combinatorics/k_selection/KSelectionPattern.h"
 
 namespace HelperFunctions {
-    uint32_t binomial(uint32_t n, uint32_t k);
-    uint32_t permutation(uint32_t n, uint32_t k);
+    uint64_t binomial(uint32_t n, uint32_t k);
+    uint64_t permutation(uint32_t n, uint32_t k);
 }
 
 
@@ -29,7 +29,7 @@ private:
 public:
     KSelection(KSelectionPattern buildingPattern, uint32_t n, uint32_t k);
 
-    uint32_t generateCount() const;
+    uint64_t generateCount() const;
     uint32_t getN() const;
     uint32_t getK() const;
     bool getOrderMatters() const;
