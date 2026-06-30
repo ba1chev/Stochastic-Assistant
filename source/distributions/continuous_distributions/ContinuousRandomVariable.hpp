@@ -8,6 +8,9 @@
 #include "source/data_structures/vector/Vector.hpp"
 #include "source/functions/density_function/normal_density_function/NormalDensityFunction.h"
 #include "source/functions/density_function/exponential_density_function/ExponentialDensityFunction.h"
+#include "source/functions/density_function/gamma_density_function/GammaDensityFunction.h"
+#include "source/functions/density_function/chi_squared_density_function/ChiSquaredDensityFunction.h"
+#include "source/functions/density_function/student_t_density_function/StudentTDensityFunction.h"
 
 
 template <class T>
@@ -101,6 +104,12 @@ void ContinuousRandomVariable<T>::setDensityFunction() {
         this->densityFunction = new NormalDensityFunction(this->parameters[0], this->parameters[1]); break;
     case ContinuousRandomVariableType::Exponential:
         this->densityFunction = new ExponentialDensityFunction(this->parameters[0]); break;
+    case ContinuousRandomVariableType::Gamma:
+        this->densityFunction = new GammaDensityFunction(this->parameters[0], this->parameters[1]); break;
+    case ContinuousRandomVariableType::ChiSquared:
+        this->densityFunction = new ChiSquaredDensityFunction(static_cast<uint32_t>(this->parameters[0])); break;
+    case ContinuousRandomVariableType::StudentT:
+        this->densityFunction = new StudentTDensityFunction(static_cast<uint32_t>(this->parameters[0])); break;
     default: throw std::runtime_error("Unsupported ContinuousRandomVariable");
     }
 }
@@ -126,6 +135,12 @@ void ContinuousRandomVariable<T>::copyFrom(const ContinuousRandomVariable& other
         this->densityFunction = new NormalDensityFunction(other.getParameters()[0], other.getParameters()[1]); break;
     case ContinuousRandomVariableType::Exponential:
         this->densityFunction = new ExponentialDensityFunction(other.getParameters()[0]); break;
+    case ContinuousRandomVariableType::Gamma:
+        this->densityFunction = new GammaDensityFunction(other.getParameters()[0], other.getParameters()[1]); break;
+    case ContinuousRandomVariableType::ChiSquared:
+        this->densityFunction = new ChiSquaredDensityFunction(static_cast<uint32_t>(other.getParameters()[0])); break;
+    case ContinuousRandomVariableType::StudentT:
+        this->densityFunction = new StudentTDensityFunction(static_cast<uint32_t>(other.getParameters()[0])); break;
     default:
         throw std::runtime_error("Unsupported ContinuousRandomVariable");
     }
@@ -139,6 +154,12 @@ void ContinuousRandomVariable<T>::setParameters(const Vector<T>& inputParameters
         throw std::runtime_error("Normal distribution requires two parameters");
     } else if (this->type == ContinuousRandomVariableType::Exponential && (inputParameters.getSize() != 1 || inputParameters[0] <= 0)) {
         throw std::runtime_error("Exponential distribution requires one parameter and it must be greater than 0");
+    } else if (this->type == ContinuousRandomVariableType::Gamma && (inputParameters.getSize() != 2 || inputParameters[0] <= 0 || inputParameters[1] <= 0)) {
+        throw std::runtime_error("Gamma distribution requires two positive parameters (shape, rate)");
+    } else if (this->type == ContinuousRandomVariableType::ChiSquared && (inputParameters.getSize() != 1 || inputParameters[0] < 1)) {
+        throw std::runtime_error("Chi-squared distribution requires one parameter (degrees of freedom >= 1)");
+    } else if (this->type == ContinuousRandomVariableType::StudentT && (inputParameters.getSize() != 1 || inputParameters[0] < 1)) {
+        throw std::runtime_error("Student's t distribution requires one parameter (degrees of freedom >= 1)");
     }
     this->parameters = inputParameters;
 }
