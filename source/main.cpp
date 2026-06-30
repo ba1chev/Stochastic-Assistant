@@ -1,26 +1,30 @@
-#include "source/sigma_algebra/SigmaAlgebra.h"
-#include "source/sigma_algebra/sigma_algebra_factory/SigmaAlgebraFactory.h"
-#include "source/functions/probability_function/ProbabilityFunction.h"
-#include "source/functions/conditional_probability_function/ConditionalProbabilityFunction.h"
-#include "source/distributions/discrete_distributions/binomial/Binomial.h"
-#include "source/distributions/discrete_distributions/BernoulliSchemeRandomVariable.hpp"
+#include <limits>
+#include <iostream>
+
 #include "source/Constants.h"
 #include "source/functions/Function.hpp"
+#include "source/sigma_algebra/SigmaAlgebra.h"
+#include "source/data_structures/interval/Interval.h"
+#include "source/functions/probability_function/ProbabilityFunction.h"
+#include "source/distributions/continuous_distributions/gamma/Gamma.h"
+#include "source/distributions/discrete_distributions/poisson/Poisson.h"
+#include "source/distributions/continuous_distributions/normal/Normal.h"
+#include "source/distributions/continuous_distributions/uniform/Uniform.h"
+#include "source/distributions/discrete_distributions/binomial/Binomial.h"
+#include "source/sigma_algebra/sigma_algebra_factory/SigmaAlgebraFactory.h"
+#include "source/distributions/discrete_distributions/bernoulii/Bernoulli.h"
 #include "source/distributions/discrete_distributions/geometric/Geometric.h"
+#include "source/distributions/continuous_distributions/student_t/StudentT.h"
+#include "source/distributions/continuous_distributions/chi_squared/ChiSquared.h"
+#include "source/distributions/continuous_distributions/exponential/Exponential.h"
+#include "source/distributions/discrete_distributions/hyper_geometric/HyperGeometric.h"
+#include "source/distributions/discrete_distributions/BernoulliSchemeRandomVariable.hpp"
 #include "source/distributions/discrete_distributions/negative_binomial/NegativeBinomial.h"
+#include "source/functions/conditional_probability_function/ConditionalProbabilityFunction.h"
 #include "source/functions/density_function/uniform_density_function/UniformDensityFunction.h"
 #include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
-#include "source/data_structures/interval/Interval.h"
-#include "source/distributions/continuous_distributions/uniform/Uniform.h"
-#include "source/distributions/continuous_distributions/normal/Normal.h"
-#include "source/distributions/continuous_distributions/exponential/Exponential.h"
-#include "source/distributions/discrete_distributions/poisson/Poisson.h"
-#include "source/distributions/discrete_distributions/hyper_geometric/HyperGeometric.h"
-#include "source/distributions/continuous_distributions/gamma/Gamma.h"
-#include "source/distributions/continuous_distributions/chi_squared/ChiSquared.h"
-#include "source/distributions/continuous_distributions/student_t/StudentT.h"
-#include <iostream>
-#include <limits>
+#include "source/distributions/joint_distributions/discrete_distribution/JointDiscreteDistribution.hpp"
+#include "source/distributions/joint_distributions/continuous_distribution/JointContinuousDistribution.hpp"
 
 
 void test1() {
@@ -263,12 +267,82 @@ void test16() {
     studentT = nullptr;
 }
 
+double bivariateUniformPDF(const Vector<double>& point) {
+    if (point[0] < 0.0 || point[0] > 1.0) return 0.0;
+    if (point[1] < 0.0 || point[1] > 1.0) return 0.0;
+    return 1.0;
+}
+
+double bivariateCorrelatedPMF(const Vector<uint32_t>& point) {
+    if (point[0] == 0 && point[1] == 0) return 0.4;
+    if (point[0] == 0 && point[1] == 1) return 0.1;
+    if (point[0] == 1 && point[1] == 0) return 0.1;
+    if (point[0] == 1 && point[1] == 1) return 0.4;
+    return 0.0;
+}
+
+void test17() {
+    Vector<Pair<Vector<uint32_t>, double>> table;
+    Vector<uint32_t> p00; p00.push_back(0); p00.push_back(0);
+    Vector<uint32_t> p01; p01.push_back(0); p01.push_back(1);
+    Vector<uint32_t> p10; p10.push_back(1); p10.push_back(0);
+    Vector<uint32_t> p11; p11.push_back(1); p11.push_back(1);
+    table.push_back(Pair<Vector<uint32_t>, double>(p00, 0.4));
+    table.push_back(Pair<Vector<uint32_t>, double>(p01, 0.1));
+    table.push_back(Pair<Vector<uint32_t>, double>(p10, 0.1));
+    table.push_back(Pair<Vector<uint32_t>, double>(p11, 0.4));
+
+    Vector<uint32_t> supp; supp.push_back(0); supp.push_back(1);
+    Vector<Vector<uint32_t>> supports; supports.push_back(supp); supports.push_back(supp);
+
+    BernoulliSchemeRandomVariable<uint32_t>* b1 = new Binomial(1, 0.5);
+    BernoulliSchemeRandomVariable<uint32_t>* b2 = new Binomial(1, 0.5);
+    HeterogeneousContainer<RandomVariable<uint32_t>> marginals;
+    marginals.addElement(b1);
+    marginals.addElement(b2);
+
+    JointDiscreteDistribution<uint32_t> joint(marginals, supports, table);
+    std::cout << "P(X=0, Y=0) = " << joint.jointProbability(p00) << std::endl;
+    std::cout << "P(X=1, Y=1) = " << joint.jointProbability(p11) << std::endl;
+    Vector<Pair<uint32_t, double>> margX = joint.marginal(0);
+    for (size_t i = 0; i < margX.getSize(); i++) {
+        std::cout << "P(X=" << margX[i].getFirstComponent() << ") = "
+            << margX[i].getSecondComponent() << std::endl;
+    }
+    std::cout << "Cov(X, Y) = " << joint.covariance(0, 1) << std::endl;
+    std::cout << "Corr(X, Y) = " << joint.correlation(0, 1) << std::endl;
+    std::cout << "Independent: " << (joint.areIndependent() ? "yes" : "no") << std::endl;
+
+    delete b1; delete b2;
+}
+
+void test18() {
+    ContinuousRandomVariable<double>* u1 = new Uniform(0, 1);
+    ContinuousRandomVariable<double>* u2 = new Uniform(0, 1);
+    HeterogeneousContainer<RandomVariable<Interval>> marginals;
+    marginals.addElement(u1);
+    marginals.addElement(u2);
+
+    Vector<Interval> supports;
+    supports.push_back(Interval(0, 1));
+    supports.push_back(Interval(0, 1));
+
+    JointContinuousDistribution joint(marginals, supports, bivariateUniformPDF);
+    Vector<Interval> region;
+    region.push_back(Interval(0, 0.5));
+    region.push_back(Interval(0, 0.5));
+    std::cout << "P([0,0.5] x [0,0.5]) = " << joint.jointProbability(region) << std::endl;
+    std::cout << "Marginal P(X in [0, 0.5]) = " << joint.marginalProbability(0, Interval(0, 0.5)) << std::endl;
+    std::cout << "Cov(X, Y) = " << joint.covariance(0, 1) << std::endl;
+    std::cout << "Independent: " << (joint.areIndependent() ? "yes" : "no") << std::endl;
+
+    delete u1; delete u2;
+}
+
 int main() {
-    std::cout << "=== Gamma(2, 0.5) ===" << std::endl;
-    test14();
-    std::cout << "=== ChiSquared(5) ===" << std::endl;
-    test15();
-    std::cout << "=== StudentT(10) ===" << std::endl;
-    test16();
+    std::cout << "=== JointDiscrete (correlated Bernoullis) ===" << std::endl;
+    test17();
+    std::cout << "=== JointContinuous (bivariate Uniform) ===" << std::endl;
+    test18();
     return 0;
 }
