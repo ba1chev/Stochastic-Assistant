@@ -14,7 +14,7 @@ StudentT::StudentT(uint32_t degreesOfFreedom): ContinuousRandomVariable([&]() {
 
 double StudentT::calculateProbability(const Interval& interval) const {
     const double n = this->getParameters()[0];
-    const double tailBound = (n > 2.0) ? 10.0 * std::sqrt(n / (n - 2.0)) : 50.0;
+    const double tailBound = (n > 2.0) ? STUDENT_T_SIGMA_CUTOFF_MULTIPLIER * std::sqrt(n / (n - 2.0)) : STUDENT_T_SMALL_DF_CUTOFF;
 
     double left = interval.getLeftComponent();
     double right = interval.getRightComponent();

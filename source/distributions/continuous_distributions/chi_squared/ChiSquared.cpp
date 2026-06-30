@@ -19,7 +19,7 @@ double ChiSquared::calculateProbability(const Interval& interval) const {
     double left = std::max(0.0, interval.getLeftComponent());
     double right = interval.getRightComponent();
 
-    const double effectiveRight = (std::isinf(right) && right > 0) ? mean + 10.0 * stdDev : right;
+    const double effectiveRight = (std::isinf(right) && right > 0) ? mean + CHI_SQUARED_SIGMA_CUTOFF_MULTIPLIER * stdDev : right;
     if (left > effectiveRight) return 0.0;
 
     Integral* integral = new TrapezoidalRuleIntegral(this->getDensityFunction(), COUNT_OF_SUB_INTERVALS);
