@@ -1,5 +1,5 @@
 #pragma once
 
 enum class ContinuousRandomVariableType {
-    None, Uniform, Normal, Exponential
+    None, Uniform, Normal, Exponential, Gamma, ChiSquared, StudentT
 };
