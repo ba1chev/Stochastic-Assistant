@@ -1,11 +1,11 @@
 #pragma once
 
 #include "source/functions/Function.hpp"
-#include "../../sigma_algebra/SigmaAlgebra.h"
-#include "../../data_structures/pair/Pair.hpp"
-#include "../../data_structures/vector/Vector.hpp"
-#include "../../data_structures/interval/Interval.h"
-#include "../../events/set_of_elementary_events/event/Event.h"
+#include "source/sigma_algebra/SigmaAlgebra.h"
+#include "source/data_structures/pair/Pair.hpp"
+#include "source/data_structures/vector/Vector.hpp"
+#include "source/data_structures/interval/Interval.h"
+#include "source/events/set_of_elementary_events/event/Event.h"
 
 typedef double (*ProbabilityFunctionFilter)(const Event& event);
 Range<double> probabilityFunctionRange();

@@ -1,7 +1,7 @@
 #include <stdexcept>
 
-#include "BitSet.h"
-#include "../../Constants.h"
+#include "source/Constants.h"
+#include "source/data_structures/bitset/BitSet.h"
 
 BitSet::BitSet() {
     size_t buckets = this->getBucketIndex(MAX_TOLERANCE_BITSET) + 1;

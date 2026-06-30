@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../SigmaAlgebraPattern.h"
+#include "source/sigma_algebra/SigmaAlgebraPattern.h"
 
 class SigmaAlgebra;
 class Omega;
