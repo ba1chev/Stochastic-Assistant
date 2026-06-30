@@ -42,8 +42,8 @@ template <class T>
 JointDiscreteDistribution<T>::JointDiscreteDistribution(const HeterogeneousContainer<RandomVariable<T>>& marginals,
     const Vector<Vector<T>>& supports):
     JointDistribution<RandomVariable<T>>(JointDistributionMode::Independent) {
-    if (marginals.getSize() == 0) throw std::logic_error("JointDiscreteDistribution requires at least one marginal");
-    if (supports.getSize() != marginals.getSize()) throw std::logic_error("Supports size must match marginals size");
+    if (marginals.getSize() == 0) throw std::logic_error(ERR_JOINT_REQUIRES_MARGINAL);
+    if (supports.getSize() != marginals.getSize()) throw std::logic_error(ERR_SUPPORTS_SIZE_MISMATCH);
     this->marginals = marginals;
     this->supports = supports;
 }
@@ -52,8 +52,8 @@ template <class T>
 JointDiscreteDistribution<T>::JointDiscreteDistribution(const HeterogeneousContainer<RandomVariable<T>>& marginals,
     const Vector<Vector<T>>& supports, const Vector<Pair<Vector<T>, double>>& table):
     JointDistribution<RandomVariable<T>>(JointDistributionMode::TableGeneral) {
-    if (marginals.getSize() == 0) throw std::logic_error("JointDiscreteDistribution requires at least one marginal");
-    if (supports.getSize() != marginals.getSize()) throw std::logic_error("Supports size must match marginals size");
+    if (marginals.getSize() == 0) throw std::logic_error(ERR_JOINT_REQUIRES_MARGINAL);
+    if (supports.getSize() != marginals.getSize()) throw std::logic_error(ERR_SUPPORTS_SIZE_MISMATCH);
     if (table.getSize() == 0) throw std::logic_error("Joint PMF table must be non-empty");
 
     double total = 0.0;
@@ -64,7 +64,7 @@ JointDiscreteDistribution<T>::JointDiscreteDistribution(const HeterogeneousConta
         this->validateProbability(table[i].getSecondComponent());
         total += table[i].getSecondComponent();
     }
-    if (std::fabs(total - 1.0) > 1e-6) throw std::logic_error("Joint PMF table probabilities must sum to 1");
+    if (std::fabs(total - 1.0) > JOINT_DISCRETE_PMF_SUM_TOLERANCE) throw std::logic_error("Joint PMF table probabilities must sum to 1");
 
     this->marginals = marginals;
     this->supports = supports;
@@ -75,8 +75,8 @@ template <class T>
 JointDiscreteDistribution<T>::JointDiscreteDistribution(const HeterogeneousContainer<RandomVariable<T>>& marginals,
     const Vector<Vector<T>>& supports, JointPMFFunctor<T> pmfFunctor):
     JointDistribution<RandomVariable<T>>(JointDistributionMode::FunctorGeneral) {
-    if (marginals.getSize() == 0) throw std::logic_error("JointDiscreteDistribution requires at least one marginal");
-    if (supports.getSize() != marginals.getSize()) throw std::logic_error("Supports size must match marginals size");
+    if (marginals.getSize() == 0) throw std::logic_error(ERR_JOINT_REQUIRES_MARGINAL);
+    if (supports.getSize() != marginals.getSize()) throw std::logic_error(ERR_SUPPORTS_SIZE_MISMATCH);
     if (pmfFunctor == nullptr) throw std::logic_error("Joint PMF functor must not be null");
 
     this->marginals = marginals;
@@ -251,7 +251,7 @@ double JointDiscreteDistribution<T>::correlation(size_t firstIndex, size_t secon
     double cov = this->covariance(firstIndex, secondIndex);
     double varFirst = this->marginals[firstIndex]->getVariance();
     double varSecond = this->marginals[secondIndex]->getVariance();
-    if (varFirst <= 0.0 || varSecond <= 0.0) throw std::logic_error("Correlation undefined: variance is zero");
+    if (varFirst <= 0.0 || varSecond <= 0.0) throw std::logic_error(ERR_CORRELATION_ZERO_VARIANCE);
     return cov / std::sqrt(varFirst * varSecond);
 }
 

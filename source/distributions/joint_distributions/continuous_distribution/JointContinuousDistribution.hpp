@@ -15,7 +15,7 @@ class JointContinuousDistribution: public JointDistribution<RandomVariable<Inter
 private:
     Vector<Interval> supports;
     JointPDFFunctor pdfFunctor = nullptr;
-    size_t stepsPerDimension = 64;
+    size_t stepsPerDimension = JOINT_CONTINUOUS_STEPS_PER_DIMENSION;
 
     void validateIndex(size_t index) const;
     void requireFunctor() const;
@@ -41,8 +41,8 @@ public:
 inline JointContinuousDistribution::JointContinuousDistribution(
     const HeterogeneousContainer<RandomVariable<Interval>>& marginals, const Vector<Interval>& supports):
     JointDistribution<RandomVariable<Interval>>(JointDistributionMode::Independent) {
-    if (marginals.getSize() == 0) throw std::logic_error("JointContinuousDistribution requires at least one marginal");
-    if (supports.getSize() != marginals.getSize()) throw std::logic_error("Supports size must match marginals size");
+    if (marginals.getSize() == 0) throw std::logic_error(ERR_JOINT_REQUIRES_MARGINAL);
+    if (supports.getSize() != marginals.getSize()) throw std::logic_error(ERR_SUPPORTS_SIZE_MISMATCH);
     this->marginals = marginals;
     this->supports = supports;
 }
@@ -51,8 +51,8 @@ inline JointContinuousDistribution::JointContinuousDistribution(
     const HeterogeneousContainer<RandomVariable<Interval>>& marginals, const Vector<Interval>& supports,
     JointPDFFunctor pdfFunctor):
     JointDistribution<RandomVariable<Interval>>(JointDistributionMode::FunctorGeneral) {
-    if (marginals.getSize() == 0) throw std::logic_error("JointContinuousDistribution requires at least one marginal");
-    if (supports.getSize() != marginals.getSize()) throw std::logic_error("Supports size must match marginals size");
+    if (marginals.getSize() == 0) throw std::logic_error(ERR_JOINT_REQUIRES_MARGINAL);
+    if (supports.getSize() != marginals.getSize()) throw std::logic_error(ERR_SUPPORTS_SIZE_MISMATCH);
     if (pdfFunctor == nullptr) throw std::logic_error("Joint PDF functor must not be null");
     this->marginals = marginals;
     this->supports = supports;
@@ -248,7 +248,7 @@ inline double JointContinuousDistribution::correlation(size_t firstIndex, size_t
     double cov = this->covariance(firstIndex, secondIndex);
     double varFirst = this->marginals[firstIndex]->getVariance();
     double varSecond = this->marginals[secondIndex]->getVariance();
-    if (varFirst <= 0.0 || varSecond <= 0.0) throw std::logic_error("Correlation undefined: variance is zero");
+    if (varFirst <= 0.0 || varSecond <= 0.0) throw std::logic_error(ERR_CORRELATION_ZERO_VARIANCE);
     return cov / std::sqrt(varFirst * varSecond);
 }
 
@@ -257,7 +257,7 @@ inline bool JointContinuousDistribution::areIndependent() const {
     this->requireFunctor();
 
     const size_t dim = this->getDimension();
-    const size_t samplesPerDim = 4;
+    const size_t samplesPerDim = INDEPENDENCE_SAMPLES_PER_DIMENSION;
 
     Vector<double> point;
     for (size_t i = 0; i < dim; i++) point.push_back(0.0);
@@ -278,7 +278,7 @@ inline bool JointContinuousDistribution::areIndependent() const {
             productOfMarginalDensities *= this->marginalDensityAt(i, point[i]);
         }
         double joint = this->pdfFunctor(point);
-        if (std::fabs(productOfMarginalDensities - joint) > 1e-3) return false;
+        if (std::fabs(productOfMarginalDensities - joint) > INDEPENDENCE_CHECK_TOLERANCE) return false;
 
         size_t k = 0;
         while (k < dim) {
