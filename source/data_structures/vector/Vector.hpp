@@ -4,6 +4,8 @@
 #include <iostream>
 #include <stdexcept>
 
+#include "source/Constants.h"
+
 
 template <class T>
 class Vector {
@@ -50,7 +52,7 @@ public:
 
 template<class T>
 Vector<T>::Vector() {
-    this->setCapacity(8);
+    this->setCapacity(DEFAULT_CONTAINER_CAPACITY);
     this->setSize(0);
     this->data = new T[this->getCapacity()] {};
 }

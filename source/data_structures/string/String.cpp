@@ -1,10 +1,11 @@
 #include <stdexcept>
 
-#include "String.h"
+#include "source/Constants.h"
+#include "source/data_structures/string/String.h"
 
 String::String() {
     this->setSize(0);
-    this->setCapacity(8);
+    this->setCapacity(DEFAULT_CONTAINER_CAPACITY);
     this->data = new char[this->getCapacity()] {};
 }
 
@@ -136,14 +137,14 @@ const char* String::getData() const {
 
 char& String::operator [] (size_t index) {
     if (index >= this->getSize()) {
-        throw std::out_of_range("Index is out of range");
+        throw std::out_of_range(ERR_INDEX_OUT_OF_RANGE);
     }
     return this->data[index];
 }
 
 const char& String::operator [] (size_t index) const {
     if (index >= this->getSize()) {
-        throw std::out_of_range("Index is out of range");
+        throw std::out_of_range(ERR_INDEX_OUT_OF_RANGE);
     }
     return this->data[index];
 }

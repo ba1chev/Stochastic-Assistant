@@ -2,13 +2,15 @@
 
 #include <iostream>
 
+#include "source/Constants.h"
+
 
 template <class T>
 class HeterogeneousContainer {
 private:
 	T** data = nullptr;
 	size_t size = 0;
-	size_t capacity = 8;
+	size_t capacity = DEFAULT_CONTAINER_CAPACITY;
 
 	void resize(size_t newCapacity);
 	void copyFrom(const HeterogeneousContainer& other);
@@ -37,7 +39,7 @@ public:
 
 template <class T>
 HeterogeneousContainer<T>::HeterogeneousContainer() {
-    this->capacity = 8;
+    this->capacity = DEFAULT_CONTAINER_CAPACITY;
     this->size = 0;
     this->data = new T*[this->capacity] {nullptr};
 }
@@ -110,7 +112,7 @@ void HeterogeneousContainer<T>::addElement(const T* element) {
 
 template <class T>
 void HeterogeneousContainer<T>::removeElement(size_t index) {
-    if (index >= this->size) throw std::out_of_range("Index is out of range");
+    if (index >= this->size) throw std::out_of_range(ERR_INDEX_OUT_OF_RANGE);
     delete this->data[index];
 
     for (size_t i = index; i < this->size - 1; i++) {
@@ -185,12 +187,12 @@ void HeterogeneousContainer<T>::free() {
 
 template <class T>
 T* HeterogeneousContainer<T>::operator [] (size_t index) {
-    if (index >= this->size) throw std::out_of_range("Index is out of range");
+    if (index >= this->size) throw std::out_of_range(ERR_INDEX_OUT_OF_RANGE);
     return this->data[index];
 }
 
 template <class T>
 const T* HeterogeneousContainer<T>::operator [] (size_t index) const {
-    if (index >= this->size) throw std::out_of_range("Index is out of range");
+    if (index >= this->size) throw std::out_of_range(ERR_INDEX_OUT_OF_RANGE);
     return this->data[index];
 }
