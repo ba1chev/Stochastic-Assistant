@@ -1,7 +1,7 @@
 #pragma once
 
-#include "source/events/set_of_elementary_events/event/Event.h"
 #include "source/functions/Function.hpp"
+#include "source/events/set_of_elementary_events/event/Event.h"
 
 
 class EventsIndependence {

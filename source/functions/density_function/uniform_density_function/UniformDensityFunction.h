@@ -1,7 +1,7 @@
 #pragma once
 
-#include "source/functions/density_function/DensityFunction.h"
 #include "source/data_structures/interval/Interval.h"
+#include "source/functions/density_function/DensityFunction.h"
 
 
 class UniformDensityFunction: public DensityFunction {

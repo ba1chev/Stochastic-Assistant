@@ -1,15 +1,14 @@
-#include "source/distributions/continuous_distributions/gamma/Gamma.h"
-#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
-#include "source/data_structures/integration/Integral.h"
-#include "source/Constants.h"
-#include <algorithm>
 #include <cmath>
 #include <limits>
+#include <algorithm>
+
+#include "source/Constants.h"
+#include "source/data_structures/integration/Integral.h"
+#include "source/distributions/continuous_distributions/gamma/Gamma.h"
+#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
 
 Gamma::Gamma(double alpha, double beta): ContinuousRandomVariable([&]() {
-    Vector<double> params;
-    params.push_back(alpha);
-    params.push_back(beta);
+    Vector<double> params; params.push_back(alpha); params.push_back(beta);
     return params;
 }(), ContinuousRandomVariableType::Gamma) {}
 

@@ -1,6 +1,7 @@
-#include "source/functions/density_function/exponential_density_function/ExponentialDensityFunction.h"
 #include <cmath>
 #include <limits>
+
+#include "source/functions/density_function/exponential_density_function/ExponentialDensityFunction.h"
 
 ExponentialDensityFunction::ExponentialDensityFunction(double lambda): 
     DensityFunction(Domain<double>(), Interval(0, std::numeric_limits<double>::infinity())){

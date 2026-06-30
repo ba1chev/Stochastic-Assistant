@@ -1,5 +1,5 @@
-#include "source/distributions/discrete_distributions/geometric/Geometric.h"
 #include "source/data_structures/combinatorics/k_selection/KSelection.h"
+#include "source/distributions/discrete_distributions/geometric/Geometric.h"
 
 Geometric::Geometric(Success success): 
     BernoulliSchemeRandomVariable(success, DiscreteRandomVariableType::Geometric) {}

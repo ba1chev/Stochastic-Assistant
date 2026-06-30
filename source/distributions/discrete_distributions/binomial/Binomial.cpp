@@ -1,5 +1,5 @@
-#include "source/distributions/discrete_distributions/binomial/Binomial.h"
 #include "source/data_structures/combinatorics/k_selection/KSelection.h"
+#include "source/distributions/discrete_distributions/binomial/Binomial.h"
 
 Binomial::Binomial(uint32_t countOfExperiments, Success success): 
     BernoulliSchemeRandomVariable(success, DiscreteRandomVariableType::Binomial) {

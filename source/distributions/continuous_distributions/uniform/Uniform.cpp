@@ -1,13 +1,11 @@
-#include "source/distributions/continuous_distributions/uniform/Uniform.h"
-#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
+#include "source/Constants.h"
 #include "source/data_structures/integration/Integral.h"
 #include "source/data_structures/combinatorics/k_selection/KSelection.h"
-#include "source/Constants.h"
+#include "source/distributions/continuous_distributions/uniform/Uniform.h"
+#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
 
 Uniform::Uniform(double lower, double upper): ContinuousRandomVariable([&]() {
-    Vector<double> params;
-    params.push_back(lower);
-    params.push_back(upper);
+    Vector<double> params; params.push_back(lower); params.push_back(upper);
     return params;
 }(), ContinuousRandomVariableType::Uniform) {}
 

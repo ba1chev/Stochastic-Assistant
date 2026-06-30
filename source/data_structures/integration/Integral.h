@@ -1,8 +1,9 @@
 #pragma once
 
+#include <stdexcept>
+
 #include "source/functions/Function.hpp"
 #include "source/data_structures/integration/IntegrationApproximation.h"
-#include <stdexcept>
 
 
 class Integral {

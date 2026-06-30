@@ -1,14 +1,14 @@
-#include "source/distributions/continuous_distributions/student_t/StudentT.h"
-#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
-#include "source/data_structures/integration/Integral.h"
-#include "source/Constants.h"
 #include <cmath>
 #include <limits>
 #include <stdexcept>
 
+#include "source/Constants.h"
+#include "source/data_structures/integration/Integral.h"
+#include "source/distributions/continuous_distributions/student_t/StudentT.h"
+#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
+
 StudentT::StudentT(uint32_t degreesOfFreedom): ContinuousRandomVariable([&]() {
-    Vector<double> params;
-    params.push_back(static_cast<double>(degreesOfFreedom));
+    Vector<double> params; params.push_back(static_cast<double>(degreesOfFreedom));
     return params;
 }(), ContinuousRandomVariableType::StudentT) {}
 

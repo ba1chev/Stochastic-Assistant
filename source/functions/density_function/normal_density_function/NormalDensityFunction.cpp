@@ -1,8 +1,9 @@
-#include "source/functions/density_function/normal_density_function/NormalDensityFunction.h"
-#include "source/data_structures/combinatorics/k_selection/KSelection.h"
-#include "source/Constants.h"
-#include <limits>
 #include <cmath>
+#include <limits>
+
+#include "source/Constants.h"
+#include "source/data_structures/combinatorics/k_selection/KSelection.h"
+#include "source/functions/density_function/normal_density_function/NormalDensityFunction.h"
 
 NormalDensityFunction::NormalDensityFunction(double expectation, double sigma): 
     DensityFunction(Domain<double>(), Interval(-std::numeric_limits<double>::infinity(), std::numeric_limits<double>::infinity())) {

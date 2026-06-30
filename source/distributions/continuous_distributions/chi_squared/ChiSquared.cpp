@@ -1,14 +1,14 @@
-#include "source/distributions/continuous_distributions/chi_squared/ChiSquared.h"
-#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
-#include "source/data_structures/integration/Integral.h"
-#include "source/Constants.h"
-#include <algorithm>
 #include <cmath>
 #include <limits>
+#include <algorithm>
+
+#include "source/Constants.h"
+#include "source/data_structures/integration/Integral.h"
+#include "source/distributions/continuous_distributions/chi_squared/ChiSquared.h"
+#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
 
 ChiSquared::ChiSquared(uint32_t degreesOfFreedom): ContinuousRandomVariable([&]() {
-    Vector<double> params;
-    params.push_back(static_cast<double>(degreesOfFreedom));
+    Vector<double> params; params.push_back(static_cast<double>(degreesOfFreedom));
     return params;
 }(), ContinuousRandomVariableType::ChiSquared) {}
 

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
+
 #include "source/distributions/discrete_distributions/DiscreteRandomVariableType.h"
 #include "source/distributions/discrete_distributions/DiscreteRandomVariable.hpp"
 

@@ -1,9 +1,10 @@
-#include "source/functions/density_function/student_t_density_function/StudentTDensityFunction.h"
-#include "source/data_structures/special_functions/Gamma.h"
-#include "source/Constants.h"
 #include <cmath>
 #include <limits>
 #include <stdexcept>
+
+#include "source/Constants.h"
+#include "source/data_structures/special_functions/Gamma.h"
+#include "source/functions/density_function/student_t_density_function/StudentTDensityFunction.h"
 
 StudentTDensityFunction::StudentTDensityFunction(uint32_t degreesOfFreedom):
     DensityFunction(Domain<double>(),

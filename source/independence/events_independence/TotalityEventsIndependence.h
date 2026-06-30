@@ -1,8 +1,8 @@
 #pragma once
 
+#include "source/functions/Function.hpp"
 #include "source/data_structures/vector/Vector.hpp"
 #include "source/events/set_of_elementary_events/event/Event.h"
-#include "source/functions/Function.hpp"
 
 Event intersectSubset(const Vector<Event>& events, size_t mask);
 

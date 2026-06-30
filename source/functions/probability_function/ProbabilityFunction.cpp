@@ -1,4 +1,5 @@
 #include <stdexcept>
+
 #include "ProbabilityFunction.h"
 
 Range<double> probabilityFunctionRange() {

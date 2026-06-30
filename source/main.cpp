@@ -26,7 +26,6 @@
 #include "source/distributions/joint_distributions/discrete_distribution/JointDiscreteDistribution.hpp"
 #include "source/distributions/joint_distributions/continuous_distribution/JointContinuousDistribution.hpp"
 
-
 void test1() {
     size_t countOfExperiments = 10;
     BernoulliSchemeRandomVariable<bool>* ber1 = new Bernoulli(0.9);

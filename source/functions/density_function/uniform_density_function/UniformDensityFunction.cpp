@@ -1,5 +1,6 @@
-#include "source/functions/density_function/uniform_density_function/UniformDensityFunction.h"
 #include <stdexcept>
+
+#include "source/functions/density_function/uniform_density_function/UniformDensityFunction.h"
 
 UniformDensityFunction::UniformDensityFunction(const Interval& interval): DensityFunction() {
     this->setInterval(interval);

@@ -1,8 +1,9 @@
 #pragma once
 
+#include <iostream>
+
 #include "source/distributions/continuous_distributions/ContinuousRandomVariable.hpp"
 #include "source/functions/density_function/uniform_density_function/UniformDensityFunction.h"
-#include <iostream>
 
 
 class Uniform: public ContinuousRandomVariable<double> {

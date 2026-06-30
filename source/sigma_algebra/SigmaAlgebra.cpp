@@ -1,6 +1,7 @@
+#include <stdexcept>
+
 #include "SigmaAlgebra.h"
 #include "sigma_algebra_factory/SigmaAlgebraFactory.h"
-#include <stdexcept>
 
 SigmaAlgebra::SigmaAlgebra(Omega* omega, SigmaAlgebraPattern pattern) {
     this->setOmegaRef(omega);

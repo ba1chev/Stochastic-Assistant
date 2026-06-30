@@ -1,8 +1,9 @@
-#include "source/functions/density_function/gamma_density_function/GammaDensityFunction.h"
-#include "source/data_structures/special_functions/Gamma.h"
 #include <cmath>
 #include <limits>
 #include <stdexcept>
+
+#include "source/data_structures/special_functions/Gamma.h"
+#include "source/functions/density_function/gamma_density_function/GammaDensityFunction.h"
 
 GammaDensityFunction::GammaDensityFunction(double alpha, double beta):
     DensityFunction(Domain<double>(), Interval(0.0, std::numeric_limits<double>::infinity())) {

@@ -40,7 +40,9 @@ SRC := \
 	functions/density_function/student_t_density_function/StudentTDensityFunction.cpp \
 	distributions/continuous_distributions/gamma/Gamma.cpp \
 	distributions/continuous_distributions/chi_squared/ChiSquared.cpp \
-	distributions/continuous_distributions/student_t/StudentT.cpp
+	distributions/continuous_distributions/student_t/StudentT.cpp \
+	independence/events_independence/EventsIndependence.cpp \
+	independence/events_independence/TotalityEventsIndependence.cpp
 
 .PHONY: all clean run
 

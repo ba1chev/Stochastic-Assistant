@@ -1,5 +1,5 @@
-#include "source/distributions/discrete_distributions/negative_binomial/NegativeBinomial.h"
 #include "source/data_structures/combinatorics/k_selection/KSelection.h"
+#include "source/distributions/discrete_distributions/negative_binomial/NegativeBinomial.h"
 
 NegativeBinomial::NegativeBinomial(uint32_t successesTarget, Success success): 
     BernoulliSchemeRandomVariable(success, DiscreteRandomVariableType::NegativeBinomial) {

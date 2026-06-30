@@ -1,14 +1,14 @@
-#include "source/distributions/continuous_distributions/exponential/Exponential.h"
-#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
-#include "source/data_structures/integration/Integral.h"
-#include "source/functions/density_function/exponential_density_function/ExponentialDensityFunction.h"
-#include "source/Constants.h"
 #include <cmath>
 #include <limits>
 
+#include "source/Constants.h"
+#include "source/data_structures/integration/Integral.h"
+#include "source/distributions/continuous_distributions/exponential/Exponential.h"
+#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
+#include "source/functions/density_function/exponential_density_function/ExponentialDensityFunction.h"
+
 Exponential::Exponential(double lambda): ContinuousRandomVariable([&]() {
-    Vector<double> params;
-    params.push_back(lambda);
+    Vector<double> params; params.push_back(lambda);
     return params;
 }(), ContinuousRandomVariableType::Exponential) {}
 

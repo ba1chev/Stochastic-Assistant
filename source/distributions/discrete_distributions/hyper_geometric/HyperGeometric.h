@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+
 #include "source/distributions/discrete_distributions/DiscreteRandomVariable.hpp"
 
 

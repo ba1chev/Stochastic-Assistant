@@ -1,9 +1,10 @@
 #pragma once
 
 #include <cstdint>
-#include "source/distributions/discrete_distributions/BernoulliSchemeRandomVariable.hpp"
+
 #include "source/distributions/discrete_distributions/bernoulii/Bernoulli.h"
 #include "source/data_structures/heterogeneous_container/HeterogeneousContainer.hpp"
+#include "source/distributions/discrete_distributions/BernoulliSchemeRandomVariable.hpp"
 
 
 class Binomial: public BernoulliSchemeRandomVariable<uint32_t> {

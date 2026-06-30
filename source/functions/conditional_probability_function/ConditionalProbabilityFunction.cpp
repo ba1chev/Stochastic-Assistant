@@ -1,4 +1,5 @@
 #include <stdexcept>
+
 #include "source/functions/conditional_probability_function/ConditionalProbabilityFunction.h"
 
 ConditionalProbabilityFunction::ConditionalProbabilityFunction(const SigmaAlgebra* sigmaAlgebra, ProbabilityFunctionFilter filter): 

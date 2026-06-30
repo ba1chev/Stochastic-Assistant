@@ -1,7 +1,8 @@
 #pragma once
 
-#include "source/distributions/continuous_distributions/ContinuousRandomVariable.hpp"
 #include <iostream>
+
+#include "source/distributions/continuous_distributions/ContinuousRandomVariable.hpp"
 
 
 class Exponential: public ContinuousRandomVariable<double> {

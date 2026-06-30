@@ -1,7 +1,8 @@
 #include <algorithm>
-#include "source/distributions/discrete_distributions/hyper_geometric/HyperGeometric.h"
+
 #include "source/data_structures/combinatorics/k_selection/KSelection.h"
 #include "source/data_structures/combinatorics/k_selection/KSelectionPattern.h"
+#include "source/distributions/discrete_distributions/hyper_geometric/HyperGeometric.h"
 
 HyperGeometric::HyperGeometric(uint32_t countOfAllObjects, uint32_t countOfMarkedObjects, uint32_t drawnObjects):
     DiscreteRandomVariable(DiscreteRandomVariableType::HyperGeometric) {

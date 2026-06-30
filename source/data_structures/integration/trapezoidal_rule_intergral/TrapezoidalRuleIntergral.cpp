@@ -1,6 +1,7 @@
-#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
 #include <cmath>
 #include <stdexcept>
+
+#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
 
 TrapezoidalRuleIntegral::TrapezoidalRuleIntegral(const Function<double, double>* function, size_t countOfSubIntervals):
     Integral(function, IntegrationApproximation::TrapezoidalRule) {

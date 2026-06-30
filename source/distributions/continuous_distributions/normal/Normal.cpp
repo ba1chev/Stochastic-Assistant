@@ -1,11 +1,12 @@
-#include "source/distributions/continuous_distributions/normal/Normal.h"
-#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
-#include "source/data_structures/integration/Integral.h"
-#include "source/data_structures/vector/Vector.hpp"
-#include "source/functions/density_function/normal_density_function/NormalDensityFunction.h"
-#include "source/Constants.h"
 #include <cmath>
 #include <limits>
+
+#include "source/Constants.h"
+#include "source/data_structures/vector/Vector.hpp"
+#include "source/data_structures/integration/Integral.h"
+#include "source/distributions/continuous_distributions/normal/Normal.h"
+#include "source/functions/density_function/normal_density_function/NormalDensityFunction.h"
+#include "source/data_structures/integration/trapezoidal_rule_intergral/TrapezoidalRuleIntergral.h"
 
 Normal::Normal(double expectation, double sigmaSquared): ContinuousRandomVariable([&]() {
     Vector<double> params;

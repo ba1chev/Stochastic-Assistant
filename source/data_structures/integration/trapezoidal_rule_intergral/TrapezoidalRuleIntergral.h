@@ -1,7 +1,7 @@
 #pragma once
 
-#include "source/data_structures/integration/Integral.h"
 #include "source/functions/Function.hpp"
+#include "source/data_structures/integration/Integral.h"
 
 
 class TrapezoidalRuleIntegral: public Integral {

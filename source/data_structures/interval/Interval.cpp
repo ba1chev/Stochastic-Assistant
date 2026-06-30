@@ -1,5 +1,6 @@
-#include "Interval.h"
 #include <algorithm>
+
+#include "Interval.h"
 
 Interval::Interval(double left, double right) {
     if (left > right) throw std::runtime_error("Right component must be greater than left one");

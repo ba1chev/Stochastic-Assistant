@@ -1,6 +1,7 @@
-#include "Event.h"
 #include <stdexcept>
 #include <iostream>
+
+#include "Event.h"
 
 Event::Event() {
     this->reset();

@@ -1,7 +1,8 @@
-#include "source/data_structures/special_functions/Gamma.h"
-#include "source/Constants.h"
 #include <cmath>
 #include <stdexcept>
+
+#include "source/Constants.h"
+#include "source/data_structures/special_functions/Gamma.h"
 
 namespace {
     constexpr double LANCZOS_G = 7.0;

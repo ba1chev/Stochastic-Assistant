@@ -1,9 +1,10 @@
 #pragma once
 
-#include <iostream>
 #include <cstdint>
-#include <stdexcept>
 #include <utility>
+#include <iostream>
+#include <stdexcept>
+
 #include "source/data_structures/combinatorics/k_selection/KSelectionPattern.h"
 
 namespace HelperFunctions {

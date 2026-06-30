@@ -1,8 +1,10 @@
-#include "source/independence/events_independence/EventsIndependence.h"
-#include "source/functions/probability_function/ProbabilityFunction.h"
-#include "source/Constants.h"
 #include <cmath>
 #include <stdexcept>
+
+#include "source/Constants.h"
+#include "source/functions/probability_function/ProbabilityFunction.h"
+#include "source/independence/events_independence/EventsIndependence.h"
+
 
 bool EventsIndependence::operator () (const Event& left, const Event& right, 
     Function<Event, double>* probabilityFunction) const {

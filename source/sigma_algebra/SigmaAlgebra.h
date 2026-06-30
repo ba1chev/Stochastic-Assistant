@@ -1,8 +1,8 @@
 #pragma once
 
+#include "SigmaAlgebraPattern.h"
 #include "../events/set_of_elementary_events/omega/Omega.h"
 #include "../events/set_of_elementary_events/event/Event.h"
-#include "SigmaAlgebraPattern.h"
 #include "sigma_algebra_factory/SigmaAlgebraAbstractFactory.h"
 
 

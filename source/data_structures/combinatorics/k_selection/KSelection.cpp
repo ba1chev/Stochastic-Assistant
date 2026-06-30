@@ -1,6 +1,7 @@
-#include "source/data_structures/combinatorics/k_selection/KSelection.h"
-#include "source/data_structures/combinatorics/factoriel/Factoriel.h"
 #include <algorithm>
+
+#include "source/data_structures/combinatorics/factoriel/Factoriel.h"
+#include "source/data_structures/combinatorics/k_selection/KSelection.h"
 
 KSelection::KSelection(KSelectionPattern buildingPattern, uint32_t n, uint32_t k) {
     this->setN(n);

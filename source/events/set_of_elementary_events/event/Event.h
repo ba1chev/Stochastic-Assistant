@@ -1,9 +1,10 @@
 #pragma once
 
 #include <iosfwd>
-#include "source/events/elementary_event/ElementaryEvent.h"
-#include "source/data_structures/vector/Vector.hpp"
+
 #include "source/data_structures/bitset/BitSet.h"
+#include "source/data_structures/vector/Vector.hpp"
+#include "source/events/elementary_event/ElementaryEvent.h"
 
 
 class Event {

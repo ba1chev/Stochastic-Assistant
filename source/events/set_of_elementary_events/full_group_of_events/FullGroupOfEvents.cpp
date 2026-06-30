@@ -1,5 +1,6 @@
-#include "source/events/set_of_elementary_events/full_group_of_events/FullGroupOfEvents.h"
 #include <stdexcept>
+
+#include "source/events/set_of_elementary_events/full_group_of_events/FullGroupOfEvents.h"
 
 FullGroupOfEvents::FullGroupOfEvents(const Vector<Event>& hypothesis, const Omega* omega) {
     this->setOmegaRef(omega);

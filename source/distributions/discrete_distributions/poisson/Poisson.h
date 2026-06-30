@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <iostream>
+
 #include "source/distributions/discrete_distributions/DiscreteRandomVariable.hpp"
 
 

@@ -1,8 +1,9 @@
-#include "source/independence/events_independence/TotalityEventsIndependence.h"
-#include "source/functions/probability_function/ProbabilityFunction.h"
-#include "source/Constants.h"
 #include <cmath>
 #include <stdexcept>
+
+#include "source/Constants.h"
+#include "source/functions/probability_function/ProbabilityFunction.h"
+#include "source/independence/events_independence/TotalityEventsIndependence.h"
 
 Event intersectSubset(const Vector<Event>& events, size_t mask) {
     Event result = Event();

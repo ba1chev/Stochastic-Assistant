@@ -1,5 +1,6 @@
-#include "source/functions/conditional_probability_function/full_probability_formula/FullProbabilityFormula.h"
 #include <stdexcept>
+
+#include "source/functions/conditional_probability_function/full_probability_formula/FullProbabilityFormula.h"
 
 FullProbabilityFormula::FullProbabilityFormula(const Event& event): event(event) {}
 

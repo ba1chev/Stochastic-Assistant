@@ -1,7 +1,8 @@
-#include "source/distributions/discrete_distributions/poisson/Poisson.h"
-#include "source/data_structures/combinatorics/factoriel/Factoriel.h"
-#include "source/Constants.h"
 #include <stdexcept>
+
+#include "source/Constants.h"
+#include "source/data_structures/combinatorics/factoriel/Factoriel.h"
+#include "source/distributions/discrete_distributions/poisson/Poisson.h"
 
 Poisson::Poisson(double lambda): 
     DiscreteRandomVariable(DiscreteRandomVariableType::Poisson) {

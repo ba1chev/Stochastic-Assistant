@@ -1,16 +1,16 @@
 #pragma once
 
-#include "source/distributions/RandomVariable.hpp"
-#include "source/distributions/continuous_distributions/ContinuousRandomVariableType.h"
-#include "source/data_structures/interval/Interval.h"
 #include "source/functions/Function.hpp"
-#include "source/functions/density_function/uniform_density_function/UniformDensityFunction.h"
+#include "source/distributions/RandomVariable.hpp"
 #include "source/data_structures/vector/Vector.hpp"
-#include "source/functions/density_function/normal_density_function/NormalDensityFunction.h"
-#include "source/functions/density_function/exponential_density_function/ExponentialDensityFunction.h"
+#include "source/data_structures/interval/Interval.h"
+#include "source/distributions/continuous_distributions/ContinuousRandomVariableType.h"
 #include "source/functions/density_function/gamma_density_function/GammaDensityFunction.h"
-#include "source/functions/density_function/chi_squared_density_function/ChiSquaredDensityFunction.h"
+#include "source/functions/density_function/normal_density_function/NormalDensityFunction.h"
+#include "source/functions/density_function/uniform_density_function/UniformDensityFunction.h"
 #include "source/functions/density_function/student_t_density_function/StudentTDensityFunction.h"
+#include "source/functions/density_function/exponential_density_function/ExponentialDensityFunction.h"
+#include "source/functions/density_function/chi_squared_density_function/ChiSquaredDensityFunction.h"
 
 
 template <class T>

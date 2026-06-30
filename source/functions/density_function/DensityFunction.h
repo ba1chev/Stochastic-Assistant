@@ -1,8 +1,9 @@
 #pragma once
 
+#include <limits>
+
 #include "source/functions/Function.hpp"
 #include "source/data_structures/interval/Interval.h"
-#include <limits>
 
 
 class DensityFunction: public Function<double, double> {

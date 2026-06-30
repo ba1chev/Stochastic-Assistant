@@ -1,8 +1,9 @@
-#include "source/functions/density_function/chi_squared_density_function/ChiSquaredDensityFunction.h"
-#include "source/data_structures/special_functions/Gamma.h"
 #include <cmath>
 #include <limits>
 #include <stdexcept>
+
+#include "source/data_structures/special_functions/Gamma.h"
+#include "source/functions/density_function/chi_squared_density_function/ChiSquaredDensityFunction.h"
 
 ChiSquaredDensityFunction::ChiSquaredDensityFunction(uint32_t degreesOfFreedom):
     DensityFunction(Domain<double>(), Interval(0.0, std::numeric_limits<double>::infinity())) {
