@@ -33,7 +33,14 @@ SRC := \
 	distributions/continuous_distributions/uniform/Uniform.cpp \
 	distributions/continuous_distributions/normal/Normal.cpp \
 	functions/density_function/exponential_density_function/ExponentialDensityFunction.cpp \
-	distributions/continuous_distributions/exponential/Exponential.cpp
+	distributions/continuous_distributions/exponential/Exponential.cpp \
+	data_structures/special_functions/Gamma.cpp \
+	functions/density_function/gamma_density_function/GammaDensityFunction.cpp \
+	functions/density_function/chi_squared_density_function/ChiSquaredDensityFunction.cpp \
+	functions/density_function/student_t_density_function/StudentTDensityFunction.cpp \
+	distributions/continuous_distributions/gamma/Gamma.cpp \
+	distributions/continuous_distributions/chi_squared/ChiSquared.cpp \
+	distributions/continuous_distributions/student_t/StudentT.cpp
 
 .PHONY: all clean run
 
