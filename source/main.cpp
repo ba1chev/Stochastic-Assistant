@@ -16,7 +16,11 @@
 #include "source/distributions/continuous_distributions/exponential/Exponential.h"
 #include "source/distributions/discrete_distributions/poisson/Poisson.h"
 #include "source/distributions/discrete_distributions/hyper_geometric/HyperGeometric.h"
+#include "source/distributions/continuous_distributions/gamma/Gamma.h"
+#include "source/distributions/continuous_distributions/chi_squared/ChiSquared.h"
+#include "source/distributions/continuous_distributions/student_t/StudentT.h"
 #include <iostream>
+#include <limits>
 
 
 void test1() {
@@ -225,7 +229,46 @@ void test13() {
     hyperGeometric = nullptr;
 }
 
+void test14() {
+    ContinuousRandomVariable<double>* gamma = new Gamma(2.0, 0.5);
+    std::cout << "The expectation is: " << gamma->getExpectation() << std::endl;
+    std::cout << "The variance is: " << gamma->getVariance() << std::endl;
+    std::cout << gamma->calculateProbability(Interval(0, 4)) << std::endl;
+    std::cout << gamma->calculateProbability(Interval(0, std::numeric_limits<double>::infinity())) << std::endl;
+
+    delete gamma;
+    gamma = nullptr;
+}
+
+void test15() {
+    ContinuousRandomVariable<double>* chiSquared = new ChiSquared(5);
+    std::cout << "The expectation is: " << chiSquared->getExpectation() << std::endl;
+    std::cout << "The variance is: " << chiSquared->getVariance() << std::endl;
+    std::cout << chiSquared->calculateProbability(Interval(0, 5)) << std::endl;
+    std::cout << chiSquared->calculateProbability(Interval(0, std::numeric_limits<double>::infinity())) << std::endl;
+
+    delete chiSquared;
+    chiSquared = nullptr;
+}
+
+void test16() {
+    ContinuousRandomVariable<double>* studentT = new StudentT(10);
+    std::cout << "The expectation is: " << studentT->getExpectation() << std::endl;
+    std::cout << "The variance is: " << studentT->getVariance() << std::endl;
+    std::cout << studentT->calculateProbability(Interval(-1, 1)) << std::endl;
+    std::cout << studentT->calculateProbability(Interval(-std::numeric_limits<double>::infinity(),
+        std::numeric_limits<double>::infinity())) << std::endl;
+
+    delete studentT;
+    studentT = nullptr;
+}
+
 int main() {
-    test13();
+    std::cout << "=== Gamma(2, 0.5) ===" << std::endl;
+    test14();
+    std::cout << "=== ChiSquared(5) ===" << std::endl;
+    test15();
+    std::cout << "=== StudentT(10) ===" << std::endl;
+    test16();
     return 0;
 }
