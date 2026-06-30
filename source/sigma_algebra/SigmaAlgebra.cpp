@@ -1,7 +1,8 @@
 #include <stdexcept>
 
-#include "SigmaAlgebra.h"
-#include "sigma_algebra_factory/SigmaAlgebraFactory.h"
+#include "source/Constants.h"
+#include "source/sigma_algebra/SigmaAlgebra.h"
+#include "source/sigma_algebra/sigma_algebra_factory/SigmaAlgebraFactory.h"
 
 SigmaAlgebra::SigmaAlgebra(Omega* omega, SigmaAlgebraPattern pattern) {
     this->setOmegaRef(omega);
@@ -43,7 +44,7 @@ void SigmaAlgebra::addTheAddition() {
 
 void SigmaAlgebra::addTheUnionOfAddition() {
     size_t currentSize = this->containerOfEvents.getSize();
-    if (currentSize > 32) return;
+    if (currentSize > SIGMA_ALGEBRA_SIZE_LIMIT) return;
 
     for (size_t i = 0; i < currentSize; i++) {
         Event complement = makeComplement(this->containerOfEvents[i]);
@@ -70,7 +71,7 @@ void SigmaAlgebra::buildTrivial() {
 void SigmaAlgebra::buildPowerSet() {
     this->containerOfEvents = Vector<Event>();
     const size_t n = this->omega->getElementaryEvents().getSize();
-    if (n > 20) {
+    if (n > POWER_SET_MAX_ELEMENTS) {
         throw std::logic_error("Omega is too large to construct power set explicitly (n > 20)");
     }
 
